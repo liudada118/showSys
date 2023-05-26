@@ -1,66 +1,40 @@
 import React from 'react'
 
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Menu } from 'antd';
+import { Input, Menu, Dropdown, Space } from 'antd';
 import { useState } from 'react';
+import option from '../../assets/image/Option.png'
 import './title.scss'
 
-const items = [
+const navItems = [
   {
-    label: 'Navigation One',
+    label: '实时',
     key: 'mail',
-    icon: <MailOutlined />,
   },
   {
-    label: 'Navigation Two',
+    label: '回放',
     key: 'app',
-    icon: <AppstoreOutlined />,
-    disabled: true,
-  },
-  {
-    label: 'Navigation Three - Submenu',
-    key: 'SubMenu',
-    icon: <SettingOutlined />,
-    children: [
-      {
-        type: 'group',
-        label: 'Item 1',
-        children: [
-          {
-            label: 'Option 1',
-            key: 'setting:1',
-          },
-          {
-            label: 'Option 2',
-            key: 'setting:2',
-          },
-        ],
-      },
-      {
-        type: 'group',
-        label: 'Item 2',
-        children: [
-          {
-            label: 'Option 3',
-            key: 'setting:3',
-          },
-          {
-            label: 'Option 4',
-            key: 'setting:4',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: (
-      <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-        Navigation Four - Link
-      </a>
-    ),
-    key: 'alipay',
   },
 ];
+
+const sitItems = [
+  {
+    label: <a href="https://www.antgroup.com">1st menu item</a>,
+    key: '0',
+  },
+  {
+    label: <a href="https://www.aliyun.com">2nd menu item</a>,
+    key: '1',
+  },
+  {
+    type: 'divider',
+  },
+  {
+    label: '3rd menu item',
+    key: '3',
+  },
+];
+
 const Title = () => {
   const [current, setCurrent] = useState('mail');
   const onClick = (e) => {
@@ -68,9 +42,28 @@ const Title = () => {
     setCurrent(e.key);
   };
   return <div className="title">
+    bodyta
+    <div className="titleItems">
+      <Input size="middle" style={{
+        width: '20%',
+      }} />
 
-   <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
+      <Menu className='menu' onClick={onClick} selectedKeys={[current]} mode="horizontal" items={navItems} />
+    </div>
+    <Dropdown
+      menu={{
+        sitItems,
+      }}
+      trigger={['click']}
+    >
+      <a onClick={(e) => e.preventDefault()}>
+        <Space>
+          <img className='optionImg' src={option} alt="" />
+        </Space>
+      </a>
+    </Dropdown>
+
   </div>
- ;
+    ;
 };
 export default Title;

@@ -1,3 +1,25 @@
+*{
+    margin: 0;
+    padding: 0;
+}
 .title{
     display: flex;
+    background-color: #14142B;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titleItems{
+    // display: inline-block;
+    width: 50%;
+    display: flex;
+}
+
+.menu{
+    flex: 1;
+}
+
+.optionImg{
+    width: 30px;
+    height: 30px;
 }
