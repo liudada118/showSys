@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import { Input, Menu, Dropdown, Space } from 'antd';
+import { Input, Menu, Dropdown, Space, Select } from 'antd';
 import { useState } from 'react';
 import option from '../../assets/image/Option.png'
 import './title.scss'
@@ -19,11 +19,11 @@ const navItems = [
 
 const sitItems = [
   {
-    label: <a href="https://www.antgroup.com">1st menu item</a>,
+    label: '22', //<a href="https://www.antgroup.com">1st menu item</a>,
     key: '0',
   },
   {
-    label: <a href="https://www.aliyun.com">2nd menu item</a>,
+    label: '11', //<a href="https://www.aliyun.com">2nd menu item</a>,
     key: '1',
   },
   {
@@ -35,7 +35,16 @@ const sitItems = [
   },
 ];
 
+
+
 const Title = () => {
+
+  const onChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+  const onSearch = (value) => {
+    console.log('search:', value);
+  };
   const [current, setCurrent] = useState('mail');
   const onClick = (e) => {
     console.log('click ', e);
@@ -44,9 +53,31 @@ const Title = () => {
   return <div className="title">
     bodyta
     <div className="titleItems">
-      <Input size="middle" style={{
-        width: '20%',
-      }} />
+      <Select
+        className='titleSelect'
+        showSearch
+        placeholder="选择一个传感器"
+        optionFilterProp="children"
+        onChange={onChange}
+        onSearch={onSearch}
+        filterOption={(input, option) =>
+          (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+        }
+        options={[
+          {
+            value: 'jack',
+            label: 'Jack',
+          },
+          {
+            value: 'lucy',
+            label: 'Lucy',
+          },
+          {
+            value: 'tom',
+            label: 'Tom',
+          },
+        ]}
+      />
 
       <Menu className='menu' onClick={onClick} selectedKeys={[current]} mode="horizontal" items={navItems} />
     </div>
